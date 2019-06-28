@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../blocs/pin_provider.dart';
 
 class OsNumpad extends StatelessWidget {
   final TextStyle buttonNumber = TextStyle(
@@ -7,6 +8,7 @@ class OsNumpad extends StatelessWidget {
   );
   final double _paddingValue = 10;
   Widget build(BuildContext context) {
+    final bloc = PinProvider.of(context);
     return Container(
       //color: Colors.lightBlue,
       padding: EdgeInsets.all(10),
@@ -22,6 +24,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "1",
+                  bloc,
                 ),
               ),
               Expanded(
@@ -32,6 +35,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "2",
+                  bloc,
                 ),
               ),
               Expanded(
@@ -42,6 +46,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "3",
+                  bloc,
                 ),
               ),
             ],
@@ -56,6 +61,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "4",
+                  bloc,
                 ),
               ),
               Expanded(
@@ -66,6 +72,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "5",
+                  bloc,
                 ),
               ),
               Expanded(
@@ -76,6 +83,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "6",
+                  bloc,
                 ),
               ),
             ],
@@ -90,6 +98,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "7",
+                  bloc,
                 ),
               ),
               Expanded(
@@ -100,6 +109,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "8",
+                  bloc,
                 ),
               ),
               Expanded(
@@ -110,6 +120,7 @@ class OsNumpad extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   "9",
+                  bloc,
                 ),
               ),
             ],
@@ -123,16 +134,19 @@ class OsNumpad extends StatelessWidget {
                     size: 24,
                   ),
                   "backspace",
+                  bloc,
                 ),
               ),
               Expanded(
                 child: buildButton(
-                    Text(
-                      "0",
-                      style: buttonNumber,
-                      textAlign: TextAlign.center,
-                    ),
-                    "0"),
+                  Text(
+                    "0",
+                    style: buttonNumber,
+                    textAlign: TextAlign.center,
+                  ),
+                  "0",
+                  bloc,
+                ),
               ),
               Expanded(
                 child: buildButton(
@@ -141,6 +155,7 @@ class OsNumpad extends StatelessWidget {
                     size: 36,
                   ),
                   "check",
+                  bloc,
                 ),
               ),
             ],
@@ -150,12 +165,39 @@ class OsNumpad extends StatelessWidget {
     );
   }
 
-  Widget buildButton(Widget child, String value) {
+  Widget buildButton(Widget child, String value, PinBloc bloc) {
     return Material(
       child: InkWell(
-        //splashColor: Colors.red,
         onTap: () {
-          print(value);
+          String toUpdate = "";
+          String currentValue = bloc.getCuurentValue();
+          int currentLength = currentValue == null ? 0 : currentValue.length;
+          if (value == "backspace") {
+            print("Backspace pressed");
+            if (currentValue != null && currentLength != 0) {
+              print("Inside backspace handler");
+              print("Current length is $currentLength");
+              toUpdate = currentValue.substring(0, currentLength - 1);
+              print("Vaaaaaaaaaaaaaaaaaaaaalue $toUpdate");
+              bloc.changeValue(toUpdate);
+            }
+          } else {
+            if (currentValue != null && currentValue.length < 4) {
+              toUpdate = currentValue + value;
+            } else if (currentValue == null) {
+              toUpdate = value;
+            }
+
+            //print(value.length);
+
+            if (toUpdate.length <= 4 && currentValue == null
+                ? true
+                : currentValue.length != 4) {
+              bloc.changeValue(toUpdate);
+            }
+          }
+          print("Current vaaaaaaaaaaaalue ${bloc.getCuurentValue()}");
+          //value = null;
         },
         child: Container(
           child: child,
