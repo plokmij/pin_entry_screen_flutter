@@ -21,6 +21,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "1",
                 ),
               ),
               Expanded(
@@ -30,6 +31,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "2",
                 ),
               ),
               Expanded(
@@ -39,6 +41,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "3",
                 ),
               ),
             ],
@@ -52,6 +55,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "4",
                 ),
               ),
               Expanded(
@@ -61,6 +65,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "5",
                 ),
               ),
               Expanded(
@@ -70,6 +75,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "6",
                 ),
               ),
             ],
@@ -83,6 +89,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "7",
                 ),
               ),
               Expanded(
@@ -92,6 +99,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "8",
                 ),
               ),
               Expanded(
@@ -101,6 +109,7 @@ class OsNumpad extends StatelessWidget {
                     style: buttonNumber,
                     textAlign: TextAlign.center,
                   ),
+                  "9",
                 ),
               ),
             ],
@@ -108,25 +117,31 @@ class OsNumpad extends StatelessWidget {
           Row(
             children: <Widget>[
               Expanded(
-                child: buildButton(Icon(
-                  Icons.backspace,
-                  size: 24,
-                )),
-              ),
-              Expanded(
                 child: buildButton(
-                  Text(
-                    "0",
-                    style: buttonNumber,
-                    textAlign: TextAlign.center,
+                  Icon(
+                    Icons.backspace,
+                    size: 24,
                   ),
+                  "backspace",
                 ),
               ),
               Expanded(
-                child: buildButton(Icon(
-                  Icons.check_circle,
-                  size: 36,
-                )),
+                child: buildButton(
+                    Text(
+                      "0",
+                      style: buttonNumber,
+                      textAlign: TextAlign.center,
+                    ),
+                    "0"),
+              ),
+              Expanded(
+                child: buildButton(
+                  Icon(
+                    Icons.check_circle,
+                    size: 36,
+                  ),
+                  "check",
+                ),
               ),
             ],
           ),
@@ -135,12 +150,12 @@ class OsNumpad extends StatelessWidget {
     );
   }
 
-  Widget buildButton(Widget child) {
+  Widget buildButton(Widget child, String value) {
     return Material(
       child: InkWell(
         //splashColor: Colors.red,
         onTap: () {
-          print("Fucken print");
+          print(value);
         },
         child: Container(
           child: child,
