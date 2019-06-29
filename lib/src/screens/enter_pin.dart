@@ -61,7 +61,7 @@ class EnterPin extends StatelessWidget {
                       onTap: () {
                         bloc.changeMode("hide");
                       },
-                      child: Padding(
+                      child: Container  (
                         padding: EdgeInsets.all(20),
                         child: Row(
                           children: <Widget>[
@@ -91,7 +91,7 @@ class EnterPin extends StatelessWidget {
                       onTap: () {
                         bloc.changeMode("show");
                       },
-                      child: Padding(
+                      child: Container(
                         padding: EdgeInsets.all(20),
                         child: Row(
                           children: <Widget>[
@@ -121,7 +121,7 @@ class EnterPin extends StatelessWidget {
                       onTap: () {
                         bloc.changeMode("hide");
                       },
-                      child: Padding(
+                      child: Container(
                         padding: EdgeInsets.all(20),
                         child: Row(
                           children: <Widget>[
