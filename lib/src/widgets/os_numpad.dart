@@ -172,28 +172,32 @@ class OsNumpad extends StatelessWidget {
           String toUpdate = "";
           String currentValue = bloc.getCuurentValue();
           int currentLength = currentValue == null ? 0 : currentValue.length;
-          if (value == "backspace") {
-            print("Backspace pressed");
-            if (currentValue != null && currentLength != 0) {
-              print("Inside backspace handler");
-              print("Current length is $currentLength");
-              toUpdate = currentValue.substring(0, currentLength - 1);
-              print("Vaaaaaaaaaaaaaaaaaaaaalue $toUpdate");
-              bloc.changeValue(toUpdate);
-            }
+          if (value == "check") {
+            print(currentValue);
           } else {
-            if (currentValue != null && currentValue.length < 4) {
-              toUpdate = currentValue + value;
-            } else if (currentValue == null) {
-              toUpdate = value;
-            }
+            if (value == "backspace") {
+              print("Backspace pressed");
+              if (currentValue != null && currentLength != 0) {
+                print("Inside backspace handler");
+                print("Current length is $currentLength");
+                toUpdate = currentValue.substring(0, currentLength - 1);
+                print("Vaaaaaaaaaaaaaaaaaaaaalue $toUpdate");
+                bloc.changeValue(toUpdate);
+              }
+            } else {
+              if (currentValue != null && currentValue.length < 4) {
+                toUpdate = currentValue + value;
+              } else if (currentValue == null) {
+                toUpdate = value;
+              }
 
-            //print(value.length);
+              //print(value.length);
 
-            if (toUpdate.length <= 4 && currentValue == null
-                ? true
-                : currentValue.length != 4) {
-              bloc.changeValue(toUpdate);
+              if (toUpdate.length <= 4 && currentValue == null
+                  ? true
+                  : currentValue.length != 4) {
+                bloc.changeValue(toUpdate);
+              }
             }
           }
           print("Current vaaaaaaaaaaaalue ${bloc.getCuurentValue()}");

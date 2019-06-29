@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../blocs/pin_provider.dart';
 
 class PinField extends StatelessWidget {
+  final String mode;
+  PinField({this.mode});
+
   final _textStyle = TextStyle(
     fontSize: 26,
     fontWeight: FontWeight.w500,
@@ -20,10 +23,22 @@ class PinField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              buildBox(""),
-              buildBox(""),
-              buildBox(""),
-              buildBox(""),
+              buildBox(
+                "",
+                true,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
             ],
           );
         } else if (snapshot.data.length == 1) {
@@ -31,10 +46,22 @@ class PinField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              buildBox(snapshot.data),
-              buildBox(""),
-              buildBox(""),
-              buildBox(""),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data,
+                false,
+              ),
+              buildBox(
+                "",
+                true,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
             ],
           );
         } else if (snapshot.data.length == 2) {
@@ -42,10 +69,22 @@ class PinField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              buildBox(snapshot.data[0]),
-              buildBox(snapshot.data[1]),
-              buildBox(""),
-              buildBox(""),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[0],
+                false,
+              ),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[1],
+                false,
+              ),
+              buildBox(
+                "",
+                true,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
             ],
           );
         } else if (snapshot.data.length == 3) {
@@ -53,10 +92,22 @@ class PinField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              buildBox(snapshot.data[0]),
-              buildBox(snapshot.data[1]),
-              buildBox(snapshot.data[2]),
-              buildBox(""),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[0],
+                false,
+              ),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[1],
+                false,
+              ),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[2],
+                false,
+              ),
+              buildBox(
+                "",
+                true,
+              ),
             ],
           );
         } else if (snapshot.data.length == 4) {
@@ -64,10 +115,22 @@ class PinField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              buildBox(snapshot.data[0]),
-              buildBox(snapshot.data[1]),
-              buildBox(snapshot.data[2]),
-              buildBox(snapshot.data[3]),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[0],
+                false,
+              ),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[1],
+                false,
+              ),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[2],
+                false,
+              ),
+              buildBox(
+                mode == "hide" ? "unda" : snapshot.data[3],
+                false,
+              ),
             ],
           );
         } else {
@@ -75,10 +138,22 @@ class PinField extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              buildBox(""),
-              buildBox(""),
-              buildBox(""),
-              buildBox(""),
+              buildBox(
+                "",
+                true,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
+              buildBox(
+                "",
+                false,
+              ),
             ],
           );
         }
@@ -86,23 +161,28 @@ class PinField extends StatelessWidget {
     );
   }
 
-  Widget buildBox(String number) {
+  Widget buildBox(String number, bool focus) {
     return Container(
       height: 50,
       width: 50,
       margin: EdgeInsets.all(15),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
+        border: Border.all(
+          color: focus ? Colors.green : Colors.grey,
+          width: 3.0,
+        ),
         borderRadius: BorderRadius.all(
           Radius.circular(9.0),
         ),
       ),
       child: Center(
-        child: Text(
-          number,
-          style: _textStyle,
-        ),
+        child: number == "unda"
+            ? Icon(Icons.lens)
+            : Text(
+                number,
+                style: _textStyle,
+              ),
       ),
     );
   }
