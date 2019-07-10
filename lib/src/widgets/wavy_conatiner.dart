@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-class WavyContainer extends StatelessWidget {
+class WavyContainerForLogin extends StatelessWidget {
   final Color color;
 
-  WavyContainer({this.color});
+  WavyContainerForLogin({this.color});
 
   Widget build(BuildContext context) {
     return ClipPath(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height/2.5,
-        color: color,
+        height: MediaQuery.of(context).size.height/2.2,
+        color: Color(0xff1F0587),
         /*decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [

@@ -168,9 +168,10 @@ class PinField extends StatelessWidget {
       margin: EdgeInsets.all(15),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
+        color: Colors.white,
         border: Border.all(
-          color: focus ? Colors.green : Colors.grey,
-          width: 3.0,
+          color: focus ? Color(0xff279330) : Colors.transparent,
+          width: 2.0,
         ),
         borderRadius: BorderRadius.all(
           Radius.circular(9.0),
